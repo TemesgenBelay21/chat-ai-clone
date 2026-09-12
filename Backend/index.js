@@ -2,25 +2,14 @@
 import express from 'express';
 import 'dotenv/config';
 import db from './db/db.config.js';
+import mainRouter from './src/api/main.routes.js';
+
+
 const app = express();
 
-app.post("/api/chat/conversations", async (req , res) => {
-    try {
-        res.send("post method");
-    } catch (error) {
-        console.error(error)
-        res.status(500).send("internal server error");
-    }
-});
+app.use(express.json());
+app.use("/api", mainRouter);
 
-app.get("/api/chat/conversations" , async (req , res) => {
-    try{
-        res.send("get method");
-    } catch (error) {
-        console.error(error)
-        res.status(500).send("internal server error");
-    }
-});
 
 async function startServer() {
     try{
