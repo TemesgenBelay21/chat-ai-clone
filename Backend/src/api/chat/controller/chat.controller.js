@@ -1,18 +1,20 @@
+import {createConversationService} from "../service/chat.service.js";
 
-function createConversationController(req,res) {
+async function createConversationController(req,res) {
     try {
-         res.send("chat conversation api");
+        const result = await createConversationService(req.body);
+        res.send(result)
     } catch(error) {
-        res.status(500).json({ message: error.message });
+        throw error;
     }
    
 }
 
-function getConversationController(Req,res) {
+async function getConversationController(req,res) {
     try{
           res.send("get conversation api");
     }catch(error) {
-         res.status(500).json({ message: error.message });
+         throw error;
     }
    
 }
