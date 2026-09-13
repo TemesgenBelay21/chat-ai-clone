@@ -82,4 +82,4 @@ async function createConversationService(body) {
     };
 }
 
-export { createConversationService }
+export { createConversationService, getRecentConversations }
