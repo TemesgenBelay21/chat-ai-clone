@@ -1,20 +1,18 @@
-import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from "./components/Sidebar/Sidebar";
+import Header from "./components/Header/Header";
+
 function App() {
   return (
     <div className="app">
       <Sidebar />
 
       <main className="chat">
-      {/* chat header */}
+        <Header />
 
-      {/* conversation list */}
-
-      
-
+        {/* conversation list */}
       </main>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
