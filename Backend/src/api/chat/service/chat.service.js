@@ -4,14 +4,6 @@ import { GoogleGenAI } from "@google/genai";
 
 const CONVERSATION_COLUMNS = "id, role, content, token_count, created_at";
 
-const normalizeConversationRow = (row) => ({
-    id: row.id,
-    role: row.role,
-    content: row.content,
-    tokenCount: Number(row.token_count || 0),
-    created_at: row.created_at,
-});
-
 const createGeminiClient = () => {
     if (!process.env.GEMINI_API_KEY) {
         throw new Error("GEMINI_API_KEY is not defined");
@@ -27,7 +19,7 @@ const getRecentConversations = async (limit = 5) => {
     const [rows] = await db.execute(
         `select ${CONVERSATION_COLUMNS} from conversations order by id asc limit ${safeLimit} `
     )
-    return rows.map(normalizeConversationRow);
+    return rows;
 }
 
 const generateAssistantAnswer = async (prompt, historyRows) => {
@@ -60,7 +52,13 @@ const getMessageById = async (id) => {
     )
     
     if(!rows[0]) return null;
-    return normalizeConversationRow(rows[0]);
+    return {
+        id: rows[0].id,
+        role: rows[0].role,
+        content: rows[0].content,
+        tokenCount: Number(rows[0].token_count || 0),
+        created_at: rows[0].created_at
+    }
 }
 
 
