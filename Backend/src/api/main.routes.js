@@ -1,20 +1,11 @@
-
 import express from "express"
 import chatRouter from "./chat/chat.routes.js";
-
+import { healthHandler } from "./health-handler.js";
 
 const mainRouter = express.Router();
 
-mainRouter.use("/chat",chatRouter);
+mainRouter.use("/chat", chatRouter);
 
-
-mainRouter.get("/", (req ,res) => {
-    try{
-        res.send("api is working");
-    } catch (error) {
-        console.error(error)
-        res.status(500).send("internal server error");
-    }
-})
+mainRouter.get("/", healthHandler("api is working"));
 
 export default mainRouter;
