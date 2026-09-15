@@ -2,8 +2,6 @@
 import db from "../../../../db/db.config.js";
 import { GoogleGenAI } from "@google/genai";
 
-const CONVERSATION_COLUMNS = "id, role, content, created_at";
-
 const createGeminiClient = () => {
     if (!process.env.GEMINI_API_KEY) {
         throw new Error("GEMINI_API_KEY is not defined");
@@ -17,7 +15,7 @@ const getRecentConversations = async (limit = 5) => {
     const safeLimit = Number.isNaN(normalizedLimit) ? 5 : normalizedLimit;  
 
     const [rows] = await db.execute(
-        `select ${CONVERSATION_COLUMNS} from conversations order by id desc limit ${safeLimit} `
+        `select id, role, content, created_at from conversations order by id desc limit ${safeLimit} `
     )
     return rows.reverse();
 }
@@ -48,7 +46,7 @@ const generateAssistantAnswer = async (prompt, historyRows) => {
 
 const getMessageById = async (id) => {
     const [rows] = await db.execute(
-        `select ${CONVERSATION_COLUMNS} from conversations where id = ?`, [id]
+        `select id, role, content, created_at from conversations where id = ?`, [id]
     )
     
     if(!rows[0]) return null;
