@@ -4,7 +4,7 @@ import {createConversationService,getRecentConversations } from "../service/chat
 async function createConversationController(req,res) {
     const result = await createConversationService(req.body);
     res.status(201).json({
-        success: true,
+        status:true,
         message: "message posted successfully" ,
         data: result
     })
