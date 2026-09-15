@@ -17,9 +17,9 @@ const getRecentConversations = async (limit = 5) => {
     const safeLimit = Number.isNaN(normalizedLimit) ? 5 : normalizedLimit;  
 
     const [rows] = await db.execute(
-        `select ${CONVERSATION_COLUMNS} from conversations order by id desc limit ${safeLimit} `
+        `select ${CONVERSATION_COLUMNS} from conversations order by id asc limit ${safeLimit} `
     )
-    return rows.reverse();
+    return rows;
 }
 
 const generateAssistantAnswer = async (prompt, historyRows) => {
