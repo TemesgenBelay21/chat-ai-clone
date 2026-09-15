@@ -13,17 +13,20 @@ app.use("/api", mainRouter);
 app.use(errorHandler);
 
 async function startServer() {
-    try {
+    try{
         const connection = await db.getConnection();
         connection.release();
-    } catch (error) {
-        console.error("error connecting to database:", error.message);
-        return;
+      
+        app.listen(3000 , err => {
+            if(err) {
+                throw err;
+            }
+            console.log("server is running on port 3000");
+        });
+        } catch (error) {
+            console.error("error starting the server:", error.message)
+        }
     }
 
-    app.listen(3000, () => {
-        console.log("server is running on port 3000");
-    });
-}
 
-startServer();
+    startServer();
