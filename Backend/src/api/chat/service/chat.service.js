@@ -2,7 +2,7 @@
 import db from "../../../../db/db.config.js";
 import { GoogleGenAI } from "@google/genai";
 
-const CONVERSATION_COLUMNS = "id, role, content, token_count, created_at";
+const CONVERSATION_COLUMNS = "id, role, content, created_at";
 
 const createGeminiClient = () => {
     if (!process.env.GEMINI_API_KEY) {
