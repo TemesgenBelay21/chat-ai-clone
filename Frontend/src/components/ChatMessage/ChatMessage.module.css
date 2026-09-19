@@ -7,6 +7,10 @@
   gap: 16px;
 }
 
+.message.user {
+  flex-direction: row-reverse;
+}
+
 .avatar {
   width: 30px;
   height: 30px;

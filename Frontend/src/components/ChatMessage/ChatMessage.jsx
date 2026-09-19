@@ -3,7 +3,7 @@ import styles from './ChatMessage.module.css';
 
 function ChatMessage({ role, content }) {
   return (
-    <div className={styles.message}>
+    <div className={`${styles.message} ${styles[role]}`}>
       <div className={styles.avatar}>
         {role === 'user' ? (
           <User size={18} color='white' />
