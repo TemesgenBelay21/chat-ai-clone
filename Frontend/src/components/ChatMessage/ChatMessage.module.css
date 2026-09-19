@@ -98,3 +98,19 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.markdownBody a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.markdownBody a:hover {
+  text-decoration: underline;
+}
+
+.markdownBody blockquote {
+  margin: 0 0 16px 0;
+  padding: 0 1em;
+  color: var(--text-secondary);
+  border-left: 0.25em solid var(--border-color);
+}
