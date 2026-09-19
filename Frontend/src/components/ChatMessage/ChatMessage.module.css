@@ -82,3 +82,19 @@
 .markdownBody h3 {
   font-size: 1.25em;
 }
+
+.markdownBody ul,
+.markdownBody ol {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+.markdownBody li {
+  margin-bottom: 8px;
+}
+
+.markdownBody li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
