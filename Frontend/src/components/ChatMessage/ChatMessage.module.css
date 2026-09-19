@@ -45,3 +45,40 @@
   max-width: 100%;
   white-space: normal;
 }
+
+/* Markdown Styles */
+.markdownBody {
+  font-family: inherit;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.markdownBody p {
+  margin-bottom: 16px;
+}
+
+.markdownBody p:last-child {
+  margin-bottom: 0;
+}
+
+.markdownBody h1,
+.markdownBody h2,
+.markdownBody h3,
+.markdownBody h4,
+.markdownBody h5,
+.markdownBody h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdownBody h1 {
+  font-size: 2em;
+}
+.markdownBody h2 {
+  font-size: 1.5em;
+}
+.markdownBody h3 {
+  font-size: 1.25em;
+}
