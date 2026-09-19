@@ -16,7 +16,9 @@ function ChatMessage({ role, content }) {
       {isUser ? (
         <div className={styles.content}>{content}</div>
       ) : (
-        <ReactMarkdown className={styles.markdownBody}>{content}</ReactMarkdown>
+        <div className={styles.markdownBody}>
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       )}
     </div>
   );
