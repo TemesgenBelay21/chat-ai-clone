@@ -38,3 +38,10 @@
   max-width: 80%;
   white-space: pre-wrap;
 }
+
+.message.assistant .content {
+  background-color: transparent;
+  padding: 0;
+  max-width: 100%;
+  white-space: normal;
+}
