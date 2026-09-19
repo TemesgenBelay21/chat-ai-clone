@@ -1,4 +1,5 @@
 import styles from "./MessageList.module.css";
+import ChatMessage from "../ChatMessage/ChatMessage";
 
 function MessageList({ conversations }) {
   return (
@@ -7,10 +8,11 @@ function MessageList({ conversations }) {
         <div className={styles.empty}>What are you working on?</div>
       ) : (
         conversations.map((conversation) => (
-          <div key={conversation.id} className={styles.message}>
-            <div className={styles.role}>{conversation.role}</div>
-            <div className={styles.content}>{conversation.content}</div>
-          </div>
+          <ChatMessage
+            key={conversation.id}
+            role={conversation.role}
+            content={conversation.content}
+          />
         ))
       )}
     </div>
