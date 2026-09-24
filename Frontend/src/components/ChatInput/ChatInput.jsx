@@ -26,6 +26,15 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
     setInput('');
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!input.trim() || isLoading) return;
+      handleSendMessage(input.trim());
+      setInput('');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -39,6 +48,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
           placeholder='Ask anything'
           value={input}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           disabled={isLoading}
         />
         {input.trim() ? (
