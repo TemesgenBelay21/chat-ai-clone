@@ -1,7 +1,14 @@
+import { useEffect, useRef } from "react";
 import styles from "./MessageList.module.css";
 import ChatMessage from "../ChatMessage/ChatMessage";
 
 function MessageList({ conversations }) {
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [conversations]);
+
   return (
     <div className={styles.messages}>
       {conversations.length === 0 ? (
@@ -15,6 +22,7 @@ function MessageList({ conversations }) {
           />
         ))
       )}
+      <div ref={endRef} />
     </div>
   );
 }
