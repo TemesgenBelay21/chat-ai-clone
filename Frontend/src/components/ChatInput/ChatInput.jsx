@@ -27,7 +27,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey || !e.shiftKey)) {
       e.preventDefault();
       if (!input.trim() || isLoading) return;
       handleSendMessage(input.trim());
