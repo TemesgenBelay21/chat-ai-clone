@@ -36,6 +36,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
     handleSendMessage(input.trim());
     setInput('');
     resetHeight();
+    textareaRef.current?.focus();
   };
 
   const handleSubmit = (e) => {
