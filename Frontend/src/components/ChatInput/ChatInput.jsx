@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUp, Mic, Plus } from 'lucide-react';
+import { ArrowUp, Loader2, Mic, Plus } from 'lucide-react';
 import styles from './ChatInput.module.css';
 
 export const MAX_PROMPT_LENGTH = 4000;
@@ -105,7 +105,16 @@ export default function ChatInput({
             {remaining}
           </span>
         )}
-        {input.trim() ? (
+        {isLoading ? (
+          <button
+            type='button'
+            className={styles.submitBtn}
+            aria-label='Waiting for response'
+            disabled
+          >
+            <Loader2 className={styles.spinner} size={18} />
+          </button>
+        ) : input.trim() ? (
           <button
             type='submit'
             className={styles.submitBtn}
