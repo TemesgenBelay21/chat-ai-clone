@@ -53,7 +53,14 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit}
+        aria-label='Chat message form'
+      >
+        <label className={styles.srOnly} htmlFor='chat-prompt'>
+          Message
+        </label>
         <button
           type='button'
           className={styles.icon}
@@ -63,6 +70,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
           <Plus size={20} />
         </button>
         <textarea
+          id='chat-prompt'
           ref={textareaRef}
           rows={1}
           maxLength={MAX_PROMPT_LENGTH}
