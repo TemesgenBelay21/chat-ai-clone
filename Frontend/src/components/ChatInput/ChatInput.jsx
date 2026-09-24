@@ -4,7 +4,12 @@ import styles from './ChatInput.module.css';
 
 export const MAX_PROMPT_LENGTH = 4000;
 
-export default function ChatInput({ handleSendMessage, isLoading }) {
+export default function ChatInput({
+  handleSendMessage,
+  isLoading,
+  onTogglePlus,
+  onToggleMic,
+}) {
   const [input, setInput] = useState('');
   const textareaRef = useRef(null);
 
@@ -77,7 +82,9 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
           type='button'
           className={styles.icon}
           aria-label='Add attachment'
+          aria-haspopup='menu'
           disabled={isLoading}
+          onClick={onTogglePlus}
         >
           <Plus size={20} />
         </button>
@@ -113,6 +120,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
               className={styles.icon}
               aria-label='Voice input'
               disabled={isLoading}
+              onClick={onToggleMic}
             >
               <Mic size={20} />
             </button>
