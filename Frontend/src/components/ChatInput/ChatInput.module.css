@@ -61,6 +61,13 @@
   cursor: not-allowed;
 }
 
+.charCount {
+  align-self: flex-end;
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin-right: 8px;
+}
+
 .submitBtn:hover:not(:disabled) {
   opacity: 0.8;
 }

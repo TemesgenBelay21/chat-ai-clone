@@ -48,6 +48,9 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
     }
   };
 
+  const showCounter = input.length > MAX_PROMPT_LENGTH * 0.9;
+  const remaining = MAX_PROMPT_LENGTH - input.length;
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -65,6 +68,11 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
           onKeyDown={handleKeyDown}
           disabled={isLoading}
         />
+        {showCounter && (
+          <span className={styles.charCount} aria-live='polite'>
+            {remaining}
+          </span>
+        )}
         {input.trim() ? (
           <button
             type='submit'
