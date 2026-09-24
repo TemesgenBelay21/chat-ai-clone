@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import { ArrowUp, Mic, Plus } from 'lucide-react';
 import styles from './ChatInput.module.css';
 
+export const MAX_PROMPT_LENGTH = 4000;
+
 export default function ChatInput({ handleSendMessage, isLoading }) {
   const [input, setInput] = useState('');
   const textareaRef = useRef(null);
@@ -55,6 +57,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
         <textarea
           ref={textareaRef}
           rows={1}
+          maxLength={MAX_PROMPT_LENGTH}
           className={styles.input}
           placeholder='Ask anything'
           value={input}
