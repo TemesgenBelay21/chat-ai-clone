@@ -4,6 +4,22 @@ import styles from './ChatInput.module.css';
 
 export const MAX_PROMPT_LENGTH = 4000;
 
+const growTextarea = (el) => {
+  if (!el) return;
+  el.style.height = 'auto';
+  el.style.height = `${el.scrollHeight}px`;
+};
+
+const collapseTextarea = (el) => {
+  if (!el) return;
+  el.style.height = 'auto';
+};
+
+const isComposingEvent = (e) => e.nativeEvent.isComposing || e.keyCode === 229;
+
+const isSendKey = (e) =>
+  e.key === 'Enter' && (e.ctrlKey || e.metaKey || !e.shiftKey);
+
 export default function ChatInput({
   handleSendMessage,
   isLoading,
@@ -17,22 +33,9 @@ export default function ChatInput({
     textareaRef.current?.focus();
   }, []);
 
-  const autoGrow = () => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  };
-
   const handleInputChange = (e) => {
     setInput(e.target.value);
-    autoGrow();
-  };
-
-  const resetHeight = () => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-    textarea.style.height = 'auto';
+    growTextarea(textareaRef.current);
   };
 
   const sendMessage = () => {
@@ -40,7 +43,7 @@ export default function ChatInput({
 
     handleSendMessage(input.trim());
     setInput('');
-    resetHeight();
+    collapseTextarea(textareaRef.current);
     textareaRef.current?.focus();
   };
 
@@ -50,16 +53,16 @@ export default function ChatInput({
   };
 
   const handleKeyDown = (e) => {
-    if (e.nativeEvent.isComposing || e.keyCode === 229) return;
+    if (isComposingEvent(e)) return;
 
     if (e.key === 'Escape' && input.trim()) {
       e.preventDefault();
       setInput('');
-      resetHeight();
+      collapseTextarea(textareaRef.current);
       return;
     }
 
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey || !e.shiftKey)) {
+    if (isSendKey(e)) {
       e.preventDefault();
       sendMessage();
     }
