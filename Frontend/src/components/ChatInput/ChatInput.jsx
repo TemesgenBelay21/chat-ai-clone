@@ -18,12 +18,23 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
     autoGrow();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const resetHeight = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = 'auto';
+  };
+
+  const sendMessage = () => {
     if (!input.trim() || isLoading) return;
 
     handleSendMessage(input.trim());
     setInput('');
+    resetHeight();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMessage();
   };
 
   const handleKeyDown = (e) => {
@@ -31,9 +42,7 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
 
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey || !e.shiftKey)) {
       e.preventDefault();
-      if (!input.trim() || isLoading) return;
-      handleSendMessage(input.trim());
-      setInput('');
+      sendMessage();
     }
   };
 
