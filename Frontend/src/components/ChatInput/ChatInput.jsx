@@ -125,19 +125,17 @@ export default function ChatInput({
           >
             <ArrowUp size={18} />
           </button>
-        ) : (
-          <>
-            <button
-              type='button'
-              className={styles.icon}
-              aria-label='Voice input'
-              disabled={isLoading}
-              onClick={onToggleMic}
-            >
-              <Mic size={20} />
-            </button>
-          </>
-        )}
+        ) :
+          <button
+            type='button'
+            className={styles.icon}
+            aria-label='Voice input'
+            disabled={isLoading}
+            onClick={onToggleMic}
+          >
+            <Mic size={20} />
+          </button>
+        }
       </form>
     </div>
   );
