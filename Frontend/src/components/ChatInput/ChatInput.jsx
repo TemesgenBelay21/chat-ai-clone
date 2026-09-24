@@ -54,9 +54,14 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.icon}>
+        <button
+          type='button'
+          className={styles.icon}
+          aria-label='Add attachment'
+          disabled={isLoading}
+        >
           <Plus size={20} />
-        </div>
+        </button>
         <textarea
           ref={textareaRef}
           rows={1}
@@ -83,9 +88,14 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
           </button>
         ) : (
           <>
-            <div className={styles.icon}>
+            <button
+              type='button'
+              className={styles.icon}
+              aria-label='Voice input'
+              disabled={isLoading}
+            >
               <Mic size={20} />
-            </div>
+            </button>
           </>
         )}
       </form>

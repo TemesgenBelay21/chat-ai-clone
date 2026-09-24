@@ -21,6 +21,13 @@
   justify-content: center;
   padding: 8px;
   cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.icon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .input {
