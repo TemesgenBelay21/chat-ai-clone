@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUp, Mic, Plus } from 'lucide-react';
 import styles from './ChatInput.module.css';
 
@@ -7,6 +7,10 @@ export const MAX_PROMPT_LENGTH = 4000;
 export default function ChatInput({ handleSendMessage, isLoading }) {
   const [input, setInput] = useState('');
   const textareaRef = useRef(null);
+
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, []);
 
   const autoGrow = () => {
     const textarea = textareaRef.current;
