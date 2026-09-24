@@ -1,9 +1,22 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowUp, Mic, Plus } from 'lucide-react';
 import styles from './ChatInput.module.css';
 
 export default function ChatInput({ handleSendMessage, isLoading }) {
   const [input, setInput] = useState('');
+  const textareaRef = useRef(null);
+
+  const autoGrow = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    autoGrow();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,12 +32,13 @@ export default function ChatInput({ handleSendMessage, isLoading }) {
         <div className={styles.icon}>
           <Plus size={20} />
         </div>
-        <input
-          type='text'
+        <textarea
+          ref={textareaRef}
+          rows={1}
           className={styles.input}
           placeholder='Ask anything'
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={handleInputChange}
           disabled={isLoading}
         />
         {input.trim() ? (

@@ -32,6 +32,10 @@
   padding: 12px;
   outline: none;
   font-family: inherit;
+  resize: none;
+  overflow-y: auto;
+  max-height: 200px;
+  line-height: 1.5;
 }
 
 .input::placeholder {
