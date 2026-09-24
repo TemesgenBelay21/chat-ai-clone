@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Plus, Mic, ArrowUp } from 'lucide-react';
+import { ArrowUp, Mic, Plus } from 'lucide-react';
 import styles from './ChatInput.module.css';
 
 export default function ChatInput({ handleSendMessage, isLoading }) {
   const [input, setInput] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
