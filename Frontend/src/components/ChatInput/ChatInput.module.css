@@ -3,6 +3,7 @@
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
+  animation: slideUp 0.3s ease-out;
 }
 
 .form {
@@ -112,5 +113,26 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+
+  .spinner {
+    animation-duration: 1.6s;
   }
 }
